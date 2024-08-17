@@ -9,9 +9,9 @@ services:
     image: nginx
     container_name: nginx
     ports:
-      - 8000:80 # 8000はコンテナの外からの通信を受けるためのポート番号。80はコンテナ内通信を受けるためのポート番号
+      - 80:80 # 8000はコンテナの外からの通信を受けるためのポート番号。80はコンテナ内通信を受けるためのポート番号
     volumes:
-      - ./var/www
+      - ./src:/var/www
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf # :より左がホスト側のファイルで右側がコンテナ内のファイル
     working_dir: /var/www
     depends_on:
