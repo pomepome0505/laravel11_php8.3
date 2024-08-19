@@ -13,7 +13,13 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /composer
 ENV PATH $PATH:/composer/vendor/bin
 
-WORKDIR /var/www
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - \
+    && apt-get install -y nodejs \
+    && npm install -g npm
+
+WORKDIR /var/www/laravel-project
 
 RUN composer global require "laravel/installer"
+
+RUN docker-php-ext-install pdo_mysql
 
